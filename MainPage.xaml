@@ -7,32 +7,37 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <Grid Background="Green">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <ScrollViewer Canvas.ZIndex="0" 
+    <Page.DataContext>
+        <local:MainPageViewModel/>
+    </Page.DataContext>
+    <Page.Content>
+        <Grid Background="Green">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Canvas.ZIndex="0" 
                       Grid.Row="0" Grid.RowSpan="3" Grid.ColumnSpan="3" 
                       x:Name="_ScrollViewer"
                       ZoomMode="Enabled" 
                       VerticalScrollMode="Auto" 
                       HorizontalScrollMode="Enabled" 
                       HorizontalScrollBarVisibility="Auto"
-                      Background="Blue">
-            <Image x:Name="image"  
+                      Background="Blue"
+                      local:OnSwipe.LeftCommand="{Binding DoSomethingCommand}">
+                <Image x:Name="image"  
                        CacheMode="BitmapCache"
                        MaxWidth="{Binding Path=ViewportWidth, ElementName=_ScrollViewer}"
                        MaxHeight="{Binding Path=ViewportHeight, ElementName=_ScrollViewer}"
                    Source="ms-appx://App1SwipeOnScrollView/Assets/Square44x44Logo.scale-200.png">
-            </Image>
-        </ScrollViewer>
-    </Grid>
+                </Image>
+            </ScrollViewer>
+        </Grid>
+    </Page.Content>
 </Page>
